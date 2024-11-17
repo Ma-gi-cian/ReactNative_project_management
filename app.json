@@ -3,6 +3,9 @@
     "name": "project-management",
     "slug": "project-management",
     "version": "1.0.0",
+    "assets" : [
+      "./assets/fonts/Georgia.ttf"
+    ],
 
     "scheme": "project-management",
     "web": {

@@ -1,15 +1,18 @@
 import { Stack } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
-
-import { ScreenContent } from '~/components/ScreenContent';
+import {Text, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import UserBar from '~/components/UserBar';
 
 export default function Home() {
   return (
     <>
-      <Stack.Screen options={{ title: 'Tab Two' }} />
-      <View style={styles.container}>
-        <ScreenContent path="app/(tabs)/two.tsx" title="Tab Two" />
+      {/* <Stack.Screen options={{ title: 'Completed' }} /> */}
+      <SafeAreaView className = "w-full  bg-[#181818] h-full">
+        <UserBar/>
+      <View className = "flex items-center justify-center h-full ">
+        <Text className = "text-white text-xl font-serif text-center">This is the completed tab. You can check the tasks that have been completed.</Text>
       </View>
+      </SafeAreaView>
     </>
   );
 }
