@@ -7,10 +7,10 @@ export default function Home() {
   return (
     <>
       {/* <Stack.Screen options={{ title: 'Completed' }} /> */}
-      <SafeAreaView className = "w-full  bg-[#181818] h-full">
+      <SafeAreaView className = "w-full h-full">
         <UserBar/>
       <View className = "flex items-center justify-center h-full ">
-        <Text className = "text-white text-xl font-serif text-center">This is the completed tab. You can check the tasks that have been completed.</Text>
+        <Text className = " text-xl font-serif text-center">This is the completed tab. You can check the tasks that have been completed.</Text>
       </View>
       </SafeAreaView>
     </>
