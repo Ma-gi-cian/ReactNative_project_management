@@ -1,8 +1,9 @@
 import { Link, Tabs } from 'expo-router';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, AntDesign } from '@expo/vector-icons';
 
 const FontIcon = ({iconName, color} :{iconName : React.ComponentProps<typeof FontAwesome>['name'] , color : string}) => (<FontAwesome name={iconName} size={24} color = {color} />)
 const IonIcon = ({iconName, color} : {iconName : React.ComponentProps<typeof Ionicons>['name'], color : string }) => (<Ionicons name = {iconName} size = {24} color = {color} />)
+const AntIcon = ({iconName, color} : {iconName : React.ComponentProps<typeof AntDesign>['name'], color : string }) => (<AntDesign name = {iconName} size = {24} color = {color} />)
 
 export default function TabLayout() {
   return (
@@ -39,12 +40,5 @@ export default function TabLayout() {
   );
 }
 
-export {IonIcon, FontIcon}
+export {IonIcon, FontIcon, AntIcon}
 
-/*
-headerRight: () => (
-            <Link href="/modal" asChild>
-              <HeaderButton />
-            </Link>
-          ),
-          */
