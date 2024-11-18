@@ -1,29 +1,50 @@
-import {View, TouchableOpacity, Text, Image} from 'react-native';
-import { FontIcon } from '~/app/(tabs)/_layout';
+import {View, Dimensions, TouchableOpacity, Text, Image} from 'react-native';
+import { FontIcon, AntIcon } from '~/app/(tabs)/_layout';
+import {useState, useEffect} from 'react'
 
-const user = {
-    firstName : 'Aditya',
-    lastName : 'Jha',
-    url : 'https://images.unsplash.com/photo-1567334037232-8e02cf81ca04?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9'
-  }
 export default function UserBar() {
 
+  const [windowWidth, setWindowWidth] = useState(Dimensions.get('window').width);
 
+  const pressHandler = () => {
+    console.log("clicked the image");
+  }
+
+  const tasks = ['New Tasks', 'Saved Tasks']
+
+  const [task, setTask] = useState("New Tasks")
+  const tasksHandler = (d:string) => {
+    setTask(d)
+  }
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener('change', ({ window }) => {
+      setWindowWidth(window.width);
+    });
+
+    return () => subscription?.remove();
+  }, []);
     return(
         <>
-        <View  className = "px-4 mt-2  px-8 border-b-[1px] border-gray-200/20 flex items-center justify-between flex-row  w-full ">
-          <View className = "flex py-2  items-center overflow-hidden w-fit  flex-row  justify-center gap-2">
-            <Image source={{uri :  user.url}} className = "w-[50px] h-[50px] rounded-full  " />
-            <View className = "flex items-center justify-center">
-            <Text className = "text-white w-full font-serif text-xl text-left">Hello {user.firstName}</Text>
-            <Text className = "text-white w-full text-sm text-left">Welcome Back</Text>
-            </View>
+        <View className = {`max-w-[${windowWidth}] flex-row items-center justify-between px-2 py-1 border-b-[1px] border-gray-800  min-w-[${windowWidth}]`} >
+        <TouchableOpacity className = "px-2 py-2 border-[1px] border-black rounded-full" ><FontIcon iconName = "user-o" color = "black" /></TouchableOpacity>
+          <View className = "flex items-center gap-4 rounded-xl overflow-hidden bg-gray-500/20 px-1 py-1 justify-center flex-row w-[60%]">
+          {tasks.map((d, I) => (<TouchableOpacity onPress = {() => tasksHandler(d)} key =  {I} className =  {d == task ? `rounded-full bg-gray-400 px-2 py-1` : `rounded-full px-4 py-1`}><Text className = "font-mono text-md">{d}</Text></TouchableOpacity>))}
           </View>
-          <View className = "flex items-center w-fit  flex-row gap-4 justify-center">
-            <TouchableOpacity className = "border-2 border-white rounded-full p-2 items-center flex justify-center" ><FontIcon  iconName = "search" color = "white" /></TouchableOpacity>
-            <TouchableOpacity className = "border-2  border-white rounded-full p-2 items-center flex justify-center" ><FontIcon iconName = "bell" color = "white" /></TouchableOpacity>
+
+          <View className = "flex-row gap-4 w-[15%] px-2 py-2 flex items-center justify-center" >
+            <TouchableOpacity >
+              <AntIcon iconName = "gift" color = "black" />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <AntIcon iconName = "dotchart" color = "black" />
+            </TouchableOpacity>
           </View>
         </View>
         </>
     )
 }
+
+/*
+
+*/
